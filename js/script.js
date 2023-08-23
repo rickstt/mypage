@@ -34,3 +34,28 @@ menuIcon.onclick = () => {
     menuIcon.classList.toggle('bx-x');
     navbar.classList.toggle('active');
 }
+
+function enviarEmail() {
+    let txtnome = document.getElementById("txtnome").value;
+    let txtemail = document.getElementById("txtemail").value;
+    let txtassunto = document.getElementById("txtassunto").value;
+
+    var params = {
+        
+        from_name: txtnome,
+        from_email: txtemail,
+        subject: txtassunto,
+        message: document.getElementById("txtmensagem").value
+      };
+    
+      let serviceID = "service_soqusij";
+      let templateID = "template_1nea1la";
+        emailjs.send(serviceID, templateID, params).then(
+          function (response) {
+            console.log("E-mail enviado com sucesso!", response);
+          },
+          function (error) {
+            console.error("Erro ao enviar o e-mail:", error);
+          }
+        );
+}
